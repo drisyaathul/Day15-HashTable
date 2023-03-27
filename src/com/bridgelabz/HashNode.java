@@ -7,6 +7,7 @@ public class HashNode<T>{
 
     public HashNode() {
     }
+
     public HashNode(T data) {
         this.data = data;
     }
