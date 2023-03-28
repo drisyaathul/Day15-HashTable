@@ -1,6 +1,5 @@
 package com.bridgelabz;
 
-
 public class HashTableMain {
 
     public static void main(String[] args) {
@@ -10,9 +9,7 @@ public class HashTableMain {
         String[] wordsArray = paraGraph.split(" ");     //split based on paragraph;
 
         for (String word : wordsArray) {
-            //System.out.print(word +" => " +word.hashCode());  //to find hashCode of each word;
-            //int index = hashTable.getIndex(word);   //to find index of each word;
-            //System.out.println(word +" -> " + word.hashCode()+ " -> " +index);
+
             Integer currentFrequency = hashTable.get(word); //if the value is +1;
 
             if (currentFrequency == null)
@@ -22,6 +19,12 @@ public class HashTableMain {
 
             hashTable.addOrUpdate(word,currentFrequency);
         }
+        System.out.println(hashTable);
+        System.out.println("**************************************************************");
+        if (hashTable.remove("avoidable"))
+            System.out.println("Word is Removed");
+        else
+            System.out.println("Word is NOT Removed");
         System.out.println(hashTable);
     }
 }
