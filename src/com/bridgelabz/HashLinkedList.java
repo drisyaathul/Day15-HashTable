@@ -1,13 +1,13 @@
 package com.bridgelabz;
 
-public class HashLinkedList<T> {
+public class HashLinkedList<K,V> {
 
-    HashNode<T> head;
-    HashNode<T> tail;
+    HashNode<K,V> head;
+    HashNode<K,V> tail;
 
-    public void append(T data) {
+    public void append(K key, V value) {
 
-        HashNode<T> newNode = new HashNode<>(data);
+        HashNode<K,V> newNode = new HashNode<>(key,value);
         if (head == null) {
             head = newNode;
             tail = newNode;
@@ -16,9 +16,9 @@ public class HashLinkedList<T> {
             tail = newNode;
         }
     }
-    public void push(T data) {
+    public void push(K key,V value) {
 
-        HashNode<T> newNode = new HashNode<>(data);
+        HashNode<K,V> newNode = new HashNode<>(key,value);
         if (head == null) {
             head = newNode;
             tail = newNode;
@@ -29,27 +29,27 @@ public class HashLinkedList<T> {
     }
     public void display() {
 
-        HashNode<T> temp = head;
+        HashNode<K,V> temp = head;
         while (temp != null) {
-            System.out.print(temp.data + " -> ");
+            System.out.print(temp.key +" = "+ temp.value + " -> ");
             temp = temp.next;
         }
         System.out.println();
     }
-    public T pop() {
+    public HashNode<K,V> pop() {
 
         if (head == null)
             return null;
-        T popData = head.data;
+        HashNode<K,V> popData = head;
         head = head.next;
         return popData;
     }
-    public T poplast() {
+    public HashNode<K,V> popLast() {
 
         if (head == null)
             return null;
-        T popData = tail.data;
-        HashNode<T> temp = head;
+        HashNode<K,V> popData = tail;
+        HashNode<K,V> temp = head;
         while (temp.next != tail) {
             temp = temp.next;
         }
@@ -57,56 +57,21 @@ public class HashLinkedList<T> {
         tail = temp;
         return popData;
     }
-    public HashNode<T> search(T searchData) {
+    public HashNode<K,V> search(K searchData) {
 
-        HashNode<T> temp = head;
+        HashNode<K,V> temp = head;
         while (temp != null) {
-            if (temp.data.equals(searchData)) {
+            if (temp.key.equals(searchData)) {
                 return temp;
             }
             temp = temp.next;
         }
         return null;
     }
-    public Boolean insertAfter(T searchData, T insertData) {
 
-        HashNode<T> newNode = new HashNode<>(insertData);
-        HashNode<T> searchedNode = search(searchData);
-        if (searchedNode != null) {
-            newNode.next = searchedNode.next;
-            searchedNode.next = newNode;
-            return true;
-        }
-        return false;
-    }
-    public HashNode<T> delete(T delete) {
-        HashNode<T> temp1 = head;
-        HashNode<T> temp2 = head;
-        HashNode<T> temp3 = head;
-        int count = 0;
-        while (temp1 != null & temp2 != null & temp3 != null) {
-            count++;
-            if (count > 2) {
-                temp3 = temp3.next;
-            }
-            if (temp1.data == delete) {
-                temp2 = temp2.next;
-                temp3.next = temp2;
-            }
-            temp1 = temp1.next;
-            temp2 = temp2.next;
-        }
-        return temp1;
-    }
-    public HashNode<T> size() {
-        HashNode<T> temp = head;
-        int count = 0;
-        while (temp != null) {
-            temp = temp.next;
-            count++;
-        }
-        System.out.println("LinkedList Size = " + count);
-        return temp;
+    @Override
+    public String toString() {
+        return " \n{" + head + "}";
     }
 }
 

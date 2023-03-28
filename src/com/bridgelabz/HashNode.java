@@ -1,14 +1,21 @@
 package com.bridgelabz;
 
-public class HashNode<T>{
+public class HashNode<K,V>{
 
-    T data;
-    HashNode<T> next;
+    K key;
+    V value;
 
-    public HashNode() {
+    HashNode<K,V> next;
+
+    public HashNode(K key, V value) {
+        this.key = key;
+        this.value = value;
     }
-
-    public HashNode(T data) {
-        this.data = data;
+    public String toString() {
+        StringBuilder nodeString = new StringBuilder();
+        nodeString.append("Node: " + " K = ").append(key).append(", V = ").append(value).append("\n");
+        if (next != null)
+            nodeString.append(" , ").append(next);
+        return nodeString.toString();
     }
 }
